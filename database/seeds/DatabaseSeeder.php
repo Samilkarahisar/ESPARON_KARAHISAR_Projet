@@ -1,10 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use App\Order;
-use APp\Address;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\OrderProduct::class, 8)->create();
+        factory(App\OrderProduct::class, 3)->create();
+        factory(App\Product::class, 4)->create([
+            'product_category_id' => 1,
+        ]);
     }
 }

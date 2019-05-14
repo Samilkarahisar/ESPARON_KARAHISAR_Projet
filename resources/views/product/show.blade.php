@@ -34,13 +34,13 @@
             </div>
             <div class="row wow fadeIn">
                 <div class="col-lg-4 col-md-12 mb-4">
-                    <a href="{{ $sameCategoryProducts->get(0)->image }}"><img src="{{ $sameCategoryProducts->get(0)->image }}" class="img-fluid" alt="Image Produit"></a>
+                    <a href="{{ route('product.show', ['product' => $sameCategoryProducts->get(0)->id]) }}"><img src="{{ $sameCategoryProducts->get(0)->image }}" class="img-fluid" alt="Image Produit"></a>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <a href="{{ $sameCategoryProducts->get(1)->image }}"><img src="{{ $sameCategoryProducts->get(1)->image }}" class="img-fluid" alt="Image Produit"></a>
+                    <a href="{{ route('product.show', ['product' => $sameCategoryProducts->get(1)->id]) }}"><img src="{{ $sameCategoryProducts->get(1)->image }}" class="img-fluid" alt="Image Produit"></a>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <a href="{{ $sameCategoryProducts->get(2)->image }}"><img src="{{ $sameCategoryProducts->get(2)->image }}" class="img-fluid" alt="Image Produit"></a>
+                    <a href="{{ route('product.show', ['product' => $sameCategoryProducts->get(2)->id]) }}"><img src="{{ $sameCategoryProducts->get(2)->image }}" class="img-fluid" alt="Image Produit"></a>
                 </div>
             </div>
         </div>
