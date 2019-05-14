@@ -7,6 +7,16 @@
 
 require('./bootstrap');
 
+$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+});
+
+$("#collapse-nav-btn").click(function(e) {
+    e.preventDefault();
+    $(this).children(':first').toggleClass("fa-angle-down fa-angle-up");
+});
+
 window.Vue = require('vue');
 
 /**

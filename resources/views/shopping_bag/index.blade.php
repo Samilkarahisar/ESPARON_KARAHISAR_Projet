@@ -1,34 +1,72 @@
 @extends('layouts.app')
 
+@section('css')
+    <link href="{{ asset('css/shopping_cart.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    {!! Form::open(['id' => 'update-form']) !!}
-                    @foreach ($products as $product)
-                        <a href="{{ route('product', ['product' => $product]) }}" class="list-group-item list-group-item-action flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">{{ $product->name }}</h5>
-                                <p class="mb-1">{{ $product->price }}</p>
-                            </div>
-                        </a>
-                        <div class="col-4 col-sm-4 col-md-4">
-                            {!! Form::number($product->pivot->id, $product->pivot->quantity, array('class' => 'quantity-input', 'min' => 1, 'step' => 1, 'data-priceunit' => $product->price)) !!}
+        @if(count($products) > 0)
+            <div id="shopping-cart">
+                <div class="row">
+                    <div class="col-md-12 col-lg-8">
+                        <div id="items">
+                            @foreach ($products as $product)
+                                <div class="row py-2 mb-2 product">
+                                    <div class="col-md-3">
+                                        <img class="img-fluid mx-auto d-block image" src="{{ $product->image }}">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="row info">
+                                            <div class="col-md-5">
+                                                <p class="lead"><a href="{{ route('product.show', ['product' => $product]) }}">{{ $product->name }}</a></p>
+                                                <p class="mt-3">{{ $product->description }}</p>
+                                            </div>
+                                            <div class="col-md-3 quantity mb-4">
+                                                <input id="quantity" class="form-control quantity-input" min="1" step="1" data-priceunit="{{ $product->price  }}"
+                                                       name="{{ $product->pivot->id }}" type="number" value="{{ $product->pivot->quantity }}">
+                                            </div>
+                                            <div class="col-md-3 lead mb-4">
+                                                <p>Total : </br><span class="total-price-product">{{ $product->pivot->quantity * $product->price }}</span> €</p>
+                                                <small class="text-muted">(P.U : {{ $product->price }} €)</small>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <button data-id="{{ $product->pivot->id }}" data-href="{{ route('shopping_cart.delete') }}" type="button" class="btn delete-btn">
+                                                    <i class="fas fa-trash fa-lg" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                        <div class="col-2 col-sm-2 col-md-2 text-right">
-                            <button data-id="{{ $product->pivot->id }}" data-href="{{ route('shopping_bag.delete') }}" type="button" class="btn btn-outline-danger delete-btn">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </button>
+                    </div>
+                    <div class="col-md-12 col-lg-4">
+                        <div class="summary p-4">
+                            <p class="h4 py-2 text-center font">Résumé de la commande</p>
+                            <div class="summary-item"><span class="font-weight-bold">Sous-total</span><span id="total-order" class="float-right">{{ $totalOrder }} €</span></div>
+                            <div class="summary-item"><span class="font-weight-bold">Réduction</span><span class="float-right">0 €</span></div>
+                            <div class="summary-item"><span class="font-weight-bold">Livraison</span><span class="float-right">0 €</span></div>
+                            <div class="summary-item my-3"><span class="font-weight-bold">Total</span><span class="float-right">{{ $totalOrder }} €</span></div>
+                            <button type="button" class="btn btn-primary btn-lg btn-block mt-5">Valider le panier <i class="fas fa-check ml-3"></i></button>
+                            <button id="update-btn" type="button" class="btn btn-secondary btn-lg btn-block mt-2" data-href="{{ route('shopping_cart.update') }}">
+                                Mettre à jour le panier<i class="fas fa-pen ml-3"></i></button>
                         </div>
-                        <span class="total-price-product">{{ $product->pivot->quantity * $product->price }}</span>
-                    @endforeach
-                    {!! Form::close() !!}
+                    </div>
                 </div>
             </div>
-        </div>
-        <button id="update-btn" type="button" class="btn btn-outline-info" data-href="{{ route('shopping_bag.update') }}">Mettre à jour le panier</button>
-        <h6>Prix total : <span id="total-order">{{ $totalOrder }}</span></h6>
+        @else
+            <div class="text-center mt-5">
+                <h1>Votre panier est vide !</h1>
+                <div class="lead my-4">
+                    Consultez nos articles, en vous connectant ou non.
+                </div>
+                <div class="error-actions">
+                    <a href="{{ route('welcome') }}" class="btn btn-primary btn-lg mr-2"><i class="fa fa-home mr-2"></i>Page d'accueil</a>
+                    <a href="{{ route('login') }}" class="btn btn-success btn-lg"><i class="fa fa-user mr-2"></i>Connexion</a>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection
 

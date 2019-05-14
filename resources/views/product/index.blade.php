@@ -2,18 +2,19 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    @foreach ($products as $product)
-                        <a href="{{ route('product', ['product' => $product]) }}" class="list-group-item list-group-item-action flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">{{ $product->name }}</h5>
-                            </div>
-                        </a>
-                    @endforeach
+        <div class="row">
+            @foreach ($products as $product)
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="card">
+                        <img src="{{ $product->image }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title font-weight-bold">{{ $product->name }}</h5>
+                            <a href="{{ route('product.show', ['product' => $product]) }}" class="stretched-link"></a>
+                            <p class="text-right">{{ $product->price }} €</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection
