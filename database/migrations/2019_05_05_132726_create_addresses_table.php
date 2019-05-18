@@ -17,10 +17,10 @@ class CreateAddressesTable extends Migration
             $table->bigIncrements('id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('address1');
-            $table->string('address2');
-            $table->string('address3');
-            $table->string('postal_code');
+            $table->string('street_1');
+            $table->string('street_2');
+            $table->string('street_3');
+            $table->string('zip_code');
             $table->string('city');
             $table->string('country');
         });

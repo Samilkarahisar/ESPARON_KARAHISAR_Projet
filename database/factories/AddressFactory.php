@@ -9,10 +9,10 @@ $factory->define(Address::class, function (Faker $faker) {
     return [
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
-        'address1' => $faker->streetAddress,
-        'address2' => $faker->address,
-        'address3' => $faker->address,
-        'postal_code' => $faker->postcode,
+        'street_1' => $faker->streetAddress,
+        'street_2' => $faker->address,
+        'street_3' => $faker->address,
+        'zip_code' => $faker->postcode,
         'city' => $faker->city,
         'country' => $faker->country
     ];

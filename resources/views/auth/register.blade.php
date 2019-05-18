@@ -1,21 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Inscription</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <div class="card-body">
+                        {{ Form::model(array('route' => 'register')) }}
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('First_name') }}</label>
+
+                            {{ Form::label('first_name', 'Prénom', array('class' => 'col-md-4 col-form-label text-md-right')) }}
 
                             <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
+                                {{ Form::text('first_name', old('first_name'), array('class' => 'form-control'.($errors->has('first_name') ? ' is-invalid' : ""),
+                            'required' => true, 'autocomplete' => 'first_name', 'focus' => true)) }}
 
                                 @if ($errors->has('first_name'))
                                     <span class="invalid-feedback" role="alert">
@@ -26,11 +28,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Last_name') }}</label>
+                            {{ Form::label('last_name', 'Nom', array('class' => 'col-md-4 col-form-label text-md-right')) }}
 
                             <div class="col-md-6">
-                                <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
-
+                                {{ Form::text('last_name', old('last_name'), array('class' => 'form-control'.($errors->has('last_name') ? ' is-invalid' : ""),
+                            'required' => true, 'autocomplete' => 'last_name', 'focus' => true)) }}
                                 @if ($errors->has('last_name'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('last_name') }}</strong>
@@ -40,10 +42,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            {{ Form::label('email', 'E-mail', array('class' => 'col-md-4 col-form-label text-md-right')) }}
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                {{ Form::email('email', old('email'), array('class' => 'form-control'.($errors->has('email') ? ' is-invalid' : ""),
+                            'required' => true, 'autocomplete' => 'email')) }}
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -54,10 +57,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            {{ Form::label('password', 'Mot de passe', array('class' => 'col-md-4 col-form-label text-md-right')) }}
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required autocomplete="new-password">
+                                {{ Form::password('password', array('class' => 'form-control'.($errors->has('password') ? ' is-invalid' : ""),
+                            'required' => true, 'autocomplete' => 'new-password')) }}
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
@@ -68,24 +72,43 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            {{ Form::label('password-confirm', 'Confirmez le mot de passe', array('class' => 'col-md-4 col-form-label text-md-right')) }}
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                {{ Form::password('password_confirmation', array('id' => 'password-confirm', 'class' => 'form-control',
+                            'required' => true, 'autocomplete' => 'new-password')) }}
                             </div>
                         </div>
+
+                        {{ Form::label('address[street_1]', 'Street 1', array('class' => 'form-label')) }}
+                        {{ Form::text('address[street_1]') }}
+
+                        {{ Form::label('address[street_2]', 'Street 2', array('class' => 'form-label')) }}
+                        {{ Form::text('address[street_2]') }}
+
+                        {{ Form::label('address[street_3]', 'Street 3', array('class' => 'form-label')) }}
+                        {{ Form::text('address[street_3]') }}
+
+                        {{ Form::label('address[zip_code]', 'Code postal', array('class' => 'form-label')) }}
+                        {{ Form::text('address[zip_code]') }}
+
+                        {{ Form::label('address[city]', 'Ville', array('class' => 'form-label')) }}
+                        {{ Form::text('address[city]') }}
+
+                        {{ Form::label('address[country]', 'Pays', array('class' => 'form-label')) }}
+                        {{ Form::text('address[country]') }}
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    Valider l'inscription
                                 </button>
                             </div>
                         </div>
-                    </form>
+                        {{ Form::close() }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
