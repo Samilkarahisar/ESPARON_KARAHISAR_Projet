@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Modeles\User;
+use App\Modeles\UserDAO;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,9 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if(!Auth::user()->is_admin){
+        $userDAO = new UserDAO();
+        $user = $userDAO->createObject(Auth::user());
+        if(!$user->getIsAdmin()){
             return redirect('/');
         }
 

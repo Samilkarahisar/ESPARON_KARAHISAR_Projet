@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Address;
-use App\User;
+use App\Business\Address;
+use App\Business\User;
 use App\Http\Controllers\Controller;
+use App\Modeles\AddressDAO;
+use App\Modeles\UserDAO;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -29,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -61,15 +63,31 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Business\User
      */
     protected function create(array $data)
     {
-        return User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $address = new Address();
+        $address->setFirstName($data['first_name']);
+        $address->setLastName($data['last_name']);
+        $addressData = $data['address'];
+        $address->setStreet1($addressData ['street_1']);
+        $address->setStreet2($addressData ['street_2']);
+        $address->setStreet3($addressData ['street_3']);
+        $address->setZipCode($addressData ['zip_code']);
+        $address->setCity($addressData ['city']);
+        $address->setCountry($addressData ['country']);
+
+        $user = new User();
+        $user->setAddress($address);
+        $user->setFirstName($data['first_name']);
+        $user->setLastName($data['last_name']);
+        $user->setEmail($data['email']);
+        $user->setPassword(Hash::make($data['password']));
+
+        $userDAO = new UserDAO();
+        $userDAO->insert($user);
+
+        return $user;
     }
 }

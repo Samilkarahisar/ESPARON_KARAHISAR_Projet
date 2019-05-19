@@ -12,6 +12,25 @@ class UserDAO extends DAO
         return $this->createObject($stdObject);
     }
 
+    public function insert(User $user) {
+        if($this->get($user->getId())) {
+            return $user->getId();
+        }
+
+        $addressDAO = new AddressDAO();
+        $addressId = $addressDAO->insert($user->getAddress());
+
+        return DB::table('users')
+            ->insertGetId([
+                'address_id' => $addressId,
+                'first_name' => $user->getFirstName(),
+                'last_name' => $user->getLastName(),
+                'email' => $user->getEmail(),
+                'password' => $user->getPassword(),
+                'is_admin' => $user->getIsAdmin()
+            ]);
+    }
+
     public function createObject($stdObject) {
         if(is_null($stdObject)) {
             return null;

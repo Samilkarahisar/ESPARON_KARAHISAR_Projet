@@ -12,16 +12,22 @@ class OrderDAO extends DAO
         return $this->createObject($stdObject);
     }
 
-    public function insert($order) {
+    public function insert(Order $order) {
+        if($this->get($order->getId())) {
+            return $order->getId();
+        }
+
         return DB::table('orders')
-            ->insertGetId(['user_id' => $order->getUser()->getId(),
+            ->insertGetId([
+                'user_id' => $order->getUser()->getId(),
                 'billing_address_id' => $order->getBillingAddress()->getId(),
                 'shipping_address_id' => $order->getShippingAddress()->getId(),
                 'payment_method_id' => $order->getPaymentMethod()->getId(),
                 'status' => $order->getStatus(),
                 'date' => $order->getDate(),
                 'total' => $order->getTotal(),
-                'registered' => $order->getRegistered()]);
+                'registered' => $order->getRegistered()
+            ]);
     }
 
     public function getUserCurrent($userId) {

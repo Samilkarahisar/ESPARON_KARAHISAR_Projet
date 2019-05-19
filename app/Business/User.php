@@ -22,6 +22,13 @@ class User extends Authenticatable
     private $password;
     private $is_admin;
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->address = new Address();
+        $this->is_admin = false;
+    }
+
     public function getFullName() {
         return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
     }
