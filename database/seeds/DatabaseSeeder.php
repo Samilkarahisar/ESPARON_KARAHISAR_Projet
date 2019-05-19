@@ -11,8 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\OrderProduct::class, 3)->create();
-        factory(App\Product::class, 4)->create([
+        factory('App\Business\OrderProduct', 3)->create();
+        factory('App\Business\Product', 4)->create([
             'product_category_id' => 1,
         ]);
     }

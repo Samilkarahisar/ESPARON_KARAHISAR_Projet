@@ -6,32 +6,38 @@
 
 @section('content')
     <div class="container">
-        @if(count($products) > 0)
+        @if(sizeof($orderProducts) > 0)
             <div id="shopping-cart">
                 <div class="row">
                     <div class="col-md-12 col-lg-8">
                         <div id="items">
-                            @foreach ($products as $product)
+                            @foreach ($orderProducts as $orderProduct)
                                 <div class="row py-2 mb-2 product">
                                     <div class="col-md-3">
-                                        <img class="img-fluid mx-auto d-block image" src="{{ $product->image }}">
+                                        <img class="img-fluid mx-auto d-block image" src="{{ $orderProduct->getProduct()->getImage() }}">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="row info">
                                             <div class="col-md-5">
-                                                <p class="lead"><a href="{{ route('product.show', ['product' => $product]) }}">{{ $product->name }}</a></p>
-                                                <p class="mt-3">{{ $product->description }}</p>
+                                                <p class="lead">
+                                                    <a href="{{ route('product.show', ['product' => $orderProduct->getProduct()->getId()]) }}">
+                                                        {{ $orderProduct->getProduct()->getName() }}
+                                                    </a>
+                                                </p>
+                                                <p class="mt-3">{{ $orderProduct->getProduct()->getDescription() }}</p>
                                             </div>
                                             <div class="col-md-3 quantity mb-4">
-                                                <input id="quantity" class="form-control quantity-input" min="1" step="1" data-priceunit="{{ $product->price  }}"
-                                                       name="{{ $product->pivot->id }}" type="number" value="{{ $product->pivot->quantity }}">
+                                                <input id="quantity" class="form-control quantity-input" min="1" step="1"
+                                                       data-priceunit="{{ $orderProduct->getProduct()->getPrice()  }}" name="{{ $orderProduct->getId() }}" type="number"
+                                                       value="{{ $orderProduct->getQuantity() }}">
                                             </div>
                                             <div class="col-md-3 lead mb-4">
-                                                <p>Total : </br><span class="total-price-product">{{ $product->pivot->quantity * $product->price }}</span> €</p>
-                                                <small class="text-muted">(P.U : {{ $product->price }} €)</small>
+                                                <p>Total : </br><span class="total-price-product">{{ $orderProduct->getQuantity() * $orderProduct->getProduct()->getPrice() }}
+                                                    </span> €</p>
+                                                <small class="text-muted">(P.U : {{ $orderProduct->getProduct()->getPrice() }} €)</small>
                                             </div>
                                             <div class="col-md-1">
-                                                <button data-id="{{ $product->pivot->id }}" data-href="{{ route('shopping_cart.delete') }}" type="button" class="btn delete-btn">
+                                                <button data-id="{{ $orderProduct->getId() }}" data-href="{{ route('shopping_cart.delete') }}" type="button" class="btn delete-btn">
                                                     <i class="fas fa-trash fa-lg" aria-hidden="true"></i>
                                                 </button>
                                             </div>
@@ -59,11 +65,17 @@
             <div class="text-center mt-5">
                 <h1>Votre panier est vide !</h1>
                 <div class="lead my-4">
-                    Consultez nos articles, en vous connectant ou non.
+                    @if (Auth::user())
+                        Consultez nos articles.
+                    @else
+                        Consultez nos articles, en vous connectant ou non.
+                    @endif
                 </div>
                 <div class="error-actions">
                     <a href="{{ route('welcome') }}" class="btn btn-primary btn-lg mr-2"><i class="fa fa-home mr-2"></i>Page d'accueil</a>
-                    <a href="{{ route('login') }}" class="btn btn-success btn-lg"><i class="fa fa-user mr-2"></i>Connexion</a>
+                    @if (Auth::guest())
+                        <a href="{{ route('login') }}" class="btn btn-success btn-lg"><i class="fa fa-user mr-2"></i>Connexion</a>
+                    @endif
                 </div>
             </div>
         @endif

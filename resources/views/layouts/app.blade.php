@@ -28,7 +28,7 @@
         <div class="sidebar-heading">Catégories</div>
         <div class="list-group list-group-flush">
             @foreach ($productCategories as $productCategory)
-                <a href="{{ route('product', ['productCategory' => $productCategory]) }}" class="list-group-item list-group-item-action bg-light">{{ $productCategory->name }}</a>
+                <a href="{{ route('product', ['productCategory' => $productCategory->getId()]) }}" class="list-group-item list-group-item-action bg-light">{{ $productCategory->getName() }}</a>
             @endforeach
         </div>
     </div>
@@ -76,7 +76,7 @@
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->full_name }} <span class="caret"></span>
+                                {{ Auth::user()->getFullName() }} <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

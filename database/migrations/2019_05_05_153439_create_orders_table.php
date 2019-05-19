@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('billing_address_id')->nullable();
             $table->unsignedBigInteger('shipping_address_id')->nullable();
             $table->unsignedBigInteger('payment_method_id')->nullable();
-            $table->smallInteger('status')->default(0);
+            $table->smallInteger('status')->nullable()->default(0);
             $table->date('date')->default(now());
             $table->float('total')->default(0);
             $table->boolean('registered')->default(0);

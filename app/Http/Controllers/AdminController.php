@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
-use Illuminate\Http\Request;
+use App\Modeles\OrderDAO;
 
 class AdminController extends Controller
 {
@@ -14,7 +13,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $orderDAO = new OrderDAO();
+        $orders = $orderDAO->getAllForAdmin();
         return view('admin.index', compact('orders'));
     }
 }

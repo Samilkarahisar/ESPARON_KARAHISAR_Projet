@@ -2,7 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use App\Order;
+use App\Business\Order;
+use App\Modeles\OrderDAO;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,10 +19,11 @@ class CheckForOrder
     public function handle($request, Closure $next)
     {
         if(Auth::guest()) {
-            if(!session()->has('orderId') || !Order::find(session('orderId'))) {
-                $order = new Order;
-                $order->save();
-                session(['orderId' => $order->id]);
+            $orderDAO = new OrderDAO();
+            if(!session()->has('orderId') || !$orderDAO->get(session('orderId'))) {
+                $order = new Order();
+                $id = $orderDAO->insert($order);
+                session(['orderId' => $id]);
             }
         }
 

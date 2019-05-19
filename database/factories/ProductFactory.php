@@ -2,12 +2,11 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Product;
 use Faker\Generator as Faker;
 
-$factory->define(Product::class, function (Faker $faker) {
+$factory->define('App\Business\Product', function (Faker $faker) {
     return [
-        'product_category_id' => factory(App\ProductCategory::class)->create()->id,
+        'product_category_id' => factory('App\Business\ProductCategory')->create()->id,
         'name' => ucfirst($faker->word),
         'description' => $faker->realText(),
         'image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg',

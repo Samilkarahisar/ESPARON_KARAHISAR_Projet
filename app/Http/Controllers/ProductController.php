@@ -2,30 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\OrderProduct;
-use App\ProductCategory;
-use DB;
-use App\Product;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Modeles\ProductDAO;
 
 class ProductController extends Controller
 {
-    /**
-     * Show all products that correspond to the product category.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index(ProductCategory $productCategory)
+    public function index($productCategoryId)
     {
-        $products = $productCategory->products;
+        $productDAO = new ProductDAO();
+        $products = $productDAO->getWithProductCategory($productCategoryId);
         return view('product.index', compact('products'));
     }
 
-    public function show(Product $product)
+    public function show($productId)
     {
-        $productCategory = $product->productCategory;
-        $sameCategoryProducts = Product::where([['id', '!=', $product->id], ['product_category_id', '=', $productCategory->id]])->limit(3)->get();
+        $productDAO = new ProductDAO();
+        $product = $productDAO->get($productId);
+        $productCategory = $product->getProductCategory();
+        $sameCategoryProducts = $productDAO->getSameCategoryProducts($product->getId(), $productCategory->getId(), 3);
         return view('product.show', compact(['product', 'sameCategoryProducts']));
     }
 }

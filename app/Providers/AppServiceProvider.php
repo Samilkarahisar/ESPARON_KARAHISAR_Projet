@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\ProductCategory;
+use App\Modeles\ProductCategoryDAO;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -26,7 +26,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $productCategories = ProductCategory::all();
+        $productCategoryDAO = new ProductCategoryDAO();
+        $productCategories = $productCategoryDAO->getAll();
         View::share('productCategories', $productCategories);
         Schema::defaultStringLength(255);
     }

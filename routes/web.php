@@ -16,9 +16,9 @@ Route::group(['middleware' => ['order']], function () {
         return view('welcome');
     })->name('welcome');
 
-    Route::get('/products/{productCategory}', 'ProductController@index')->name('product');
+    Route::get('/products/{productCategoryId}', 'ProductController@index')->name('product');
 
-    Route::get('/product/{product}', 'ProductController@show')->name('product.show');
+    Route::get('/product/{productId}', 'ProductController@show')->name('product.show');
 
     Auth::routes();
 

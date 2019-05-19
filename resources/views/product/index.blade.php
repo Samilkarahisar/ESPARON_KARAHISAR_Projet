@@ -6,11 +6,11 @@
             @foreach ($products as $product)
                 <div class="col-lg-3 col-md-4 col-sm-12">
                     <div class="card mb-3">
-                        <img src="{{ $product->image }}" class="card-img-top" alt="...">
+                        <img src="{{ $product->getImage() }}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title font-weight-bold">{{ $product->name }}</h5>
-                            <a href="{{ route('product.show', ['product' => $product]) }}" class="stretched-link"></a>
-                            <p class="text-right">{{ $product->price }} €</p>
+                            <h5 class="card-title font-weight-bold">{{ $product->getName() }}</h5>
+                            <a href="{{ route('product.show', ['product' => $product->getId()]) }}" class="stretched-link"></a>
+                            <p class="text-right">{{ $product->getPrice() }} €</p>
                         </div>
                     </div>
                 </div>

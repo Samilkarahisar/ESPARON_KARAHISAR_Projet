@@ -2,10 +2,9 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\ProductCategory;
 use Faker\Generator as Faker;
 
-$factory->define(ProductCategory::class, function (Faker $faker) {
+$factory->define('App\Business\ProductCategory', function (Faker $faker) {
     return [
         'name' => ucfirst($faker->word)
     ];
