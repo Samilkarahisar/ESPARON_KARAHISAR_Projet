@@ -33,7 +33,7 @@ class UserDAO extends DAO
 
     public function createObject($stdObject) {
         if(is_null($stdObject)) {
-            return null;
+            return new User();
         }
 
         $user = new User();

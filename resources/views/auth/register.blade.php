@@ -8,7 +8,7 @@
                     <div class="card-header">Inscription</div>
 
                     <div class="card-body">
-                        {{ Form::model(array('route' => 'register')) }}
+                        {{ Form::open(array('route' => 'register')) }}
                         @csrf
 
                         <div class="form-group row">

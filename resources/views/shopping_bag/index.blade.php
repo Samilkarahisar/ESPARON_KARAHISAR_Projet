@@ -54,7 +54,7 @@
                             <div class="summary-item"><span class="font-weight-bold">Réduction</span><span class="float-right">0 €</span></div>
                             <div class="summary-item"><span class="font-weight-bold">Livraison</span><span class="float-right">0 €</span></div>
                             <div class="summary-item my-3"><span class="font-weight-bold">Total</span><span class="float-right">{{ $totalOrder }} €</span></div>
-                            <button type="button" class="btn btn-primary btn-lg btn-block mt-5">Valider le panier <i class="fas fa-check ml-3"></i></button>
+                            <a role="button" href="{{ route('client.fill_addresses') }}" class="btn btn-primary btn-lg btn-block mt-5">Valider le panier <i class="fas fa-check ml-3"></i></a>
                             <button id="update-btn" type="button" class="btn btn-secondary btn-lg btn-block mt-2" data-href="{{ route('shopping_cart.update') }}">
                                 Mettre à jour le panier<i class="fas fa-pen ml-3"></i></button>
                         </div>

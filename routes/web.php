@@ -18,6 +18,14 @@ Route::group(['middleware' => ['order']], function () {
 
     Route::get('/products/{productCategoryId}', 'ProductController@index')->name('product');
 
+    Route::prefix('/client')->group(function () {
+        Route::get('/fill_addresses', 'ClientController@fillAddresses')->name('client.fill_addresses');
+
+        Route::post('/post_fill_addresses','ClientController@postFillAddresses')->name('client.post_fill_addresses');
+    });
+
+    Route::get('/payment_method', 'PaymentMethodController@index')->name('payment_method');
+
     Route::get('/product/{productId}', 'ProductController@show')->name('product.show');
 
     Auth::routes();

@@ -25,9 +25,6 @@ class CreateOrdersTable extends Migration
             $table->boolean('registered')->default(0);
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('billing_address_id')->references('id')->on('address')->onDelete('cascade');
-            $table->foreign('shipping_address_id')->references('id')->on('address')->onDelete('cascade');
-            $table->foreign('payment_method_id')->references('id')->on('payment_method')->onDelete('cascade');
         });
     }
 

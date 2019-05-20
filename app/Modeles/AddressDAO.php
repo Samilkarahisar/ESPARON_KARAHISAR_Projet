@@ -14,7 +14,7 @@ class AddressDAO extends DAO
 
     public function insert(Address $address) {
         if($this->get($address->getId())) {
-            $address->getId();
+            return $address->getId();
         }
 
         return DB::table('addresses')

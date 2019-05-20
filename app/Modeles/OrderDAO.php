@@ -12,6 +12,26 @@ class OrderDAO extends DAO
         return $this->createObject($stdObject);
     }
 
+    public function modify(Order $order) {
+        $addressDAO = new AddressDAO();
+        $shippingAddressId = $addressDAO->insert($order->getBillingAddress());
+        $billingAddressId = $addressDAO->insert($order->getShippingAddress());
+        $order->getBillingAddress()->setId($shippingAddressId);
+        $order->getShippingAddress()->setId($billingAddressId);
+
+        return DB::table('orders')
+            ->update([
+                'user_id' => $order->getUser()->getId(),
+                'billing_address_id' => $order->getBillingAddress()->getId(),
+                'shipping_address_id' => $order->getShippingAddress()->getId(),
+                'payment_method_id' => $order->getPaymentMethod()->getId(),
+                'status' => $order->getStatus(),
+                'date' => $order->getDate(),
+                'total' => $order->getTotal(),
+                'registered' => $order->getRegistered()
+            ]);
+    }
+
     public function insert(Order $order) {
         if($this->get($order->getId())) {
             return $order->getId();
