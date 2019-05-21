@@ -20,7 +20,6 @@ class ClientController extends Controller
         $shippingAddress->setLastName($request->input('shipping_address.last_name'));
         $shippingAddress->setStreet1($request->input('shipping_address.street_1'));
         $shippingAddress->setStreet2($request->input('shipping_address.street_2'));
-        $shippingAddress->setStreet3($request->input('shipping_address.street_3'));
         $shippingAddress->setZipCode($request->input('shipping_address.zip_code'));
         $shippingAddress->setCity($request->input('shipping_address.city'));
         $shippingAddress->setCountry($request->input('shipping_address.country'));
@@ -30,7 +29,6 @@ class ClientController extends Controller
         $billingAddress->setLastName($request->input('billing_address.last_name'));
         $billingAddress->setStreet1($request->input('billing_address.street_1'));
         $billingAddress->setStreet2($request->input('billing_address.street_2'));
-        $billingAddress->setStreet3($request->input('billing_address.street_3'));
         $billingAddress->setZipCode($request->input('billing_address.zip_code'));
         $billingAddress->setCity($request->input('billing_address.city'));
         $billingAddress->setCountry($request->input('billing_address.country'));

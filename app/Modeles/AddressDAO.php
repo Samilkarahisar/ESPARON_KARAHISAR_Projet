@@ -23,7 +23,6 @@ class AddressDAO extends DAO
                 'last_name' => $address->getLastName(),
                 'street_1' => $address->getStreet1(),
                 'street_2' => $address->getStreet2(),
-                'street_3' => $address->getStreet3(),
                 'zip_code' => $address->getZipCode(),
                 'city' => $address->getCity(),
                 'country' => $address->getCountry()
@@ -42,7 +41,6 @@ class AddressDAO extends DAO
         $address->setLastName($stdObject->last_name);
         $address->setStreet1($stdObject->street_1);
         $address->setStreet2($stdObject->street_2);
-        $address->setStreet3($stdObject->street_3);
         $address->setZipCode($stdObject->zip_code);
         $address->setCity($stdObject->city);
         $address->setCountry($stdObject->country);

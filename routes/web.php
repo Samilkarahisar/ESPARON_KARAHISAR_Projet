@@ -20,11 +20,15 @@ Route::group(['middleware' => ['order']], function () {
 
     Route::prefix('/client')->group(function () {
         Route::get('/fill_addresses', 'ClientController@fillAddresses')->name('client.fill_addresses');
-
         Route::post('/post_fill_addresses','ClientController@postFillAddresses')->name('client.post_fill_addresses');
     });
 
-    Route::get('/payment_method', 'PaymentMethodController@index')->name('payment_method');
+    Route::prefix('/payment_method')->group(function () {
+        Route::get('/', 'PaymentMethodController@index')->name('payment_method');
+        Route::get('/paypal', 'PaymentMethodController@paypal')->name('payment_method.paypal');
+        Route::get('/credit_card', 'PaymentMethodController@creditCard')->name('payment_method.credit_card');
+        Route::get('/bill', 'PaymentMethodController@bill')->name('payment_method.bill');
+    });
 
     Route::get('/product/{productId}', 'ProductController@show')->name('product.show');
 
@@ -39,12 +43,9 @@ Route::group(['middleware' => ['order']], function () {
 
 Route::prefix('/shopping_cart')->group(function () {
     Route::get('/', 'ShoppingCartController@index')->name('shopping_cart')->middleware('order');
-
     //Ajax
     Route::post('/add', 'ShoppingCartController@add')->name('shopping_cart.add');
-
     Route::post('/update', 'ShoppingCartController@update')->name('shopping_cart.update');
-
     Route::post('/delete', 'ShoppingCartController@delete')->name('shopping_cart.delete');
 });
 

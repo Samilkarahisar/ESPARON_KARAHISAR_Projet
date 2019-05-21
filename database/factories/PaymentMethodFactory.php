@@ -8,6 +8,6 @@ $factory->define('App\Business\PaymentMethod', function (Faker $faker) {
     return [
         'name' => $faker->name,
         'description' => $faker->realText(),
-        'image' => $faker->imageUrl()
+        'image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg'
     ];
 });

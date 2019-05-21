@@ -15,7 +15,6 @@ class Address extends Model {
     private $last_name;
     private $street_1;
     private $street_2;
-    private $street_3;
     private $zip_code;
     private $city;
     private $country;
@@ -38,10 +37,6 @@ class Address extends Model {
 
     public function getStreet2() {
         return $this->street_2;
-    }
-
-    public function getStreet3() {
-        return $this->street_3;
     }
 
     public function getZipCode() {
@@ -74,10 +69,6 @@ class Address extends Model {
 
     public function setStreet2($street2) {
         $this->street_2 = $street2;
-    }
-
-    public function setStreet3($street3) {
-        $this->street_3 = $street3;
     }
 
     public function setZipCode($zipCode) {

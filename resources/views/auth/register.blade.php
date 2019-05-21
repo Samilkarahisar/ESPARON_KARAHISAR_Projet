@@ -86,9 +86,6 @@
                         {{ Form::label('address[street_2]', 'Street 2', array('class' => 'form-label')) }}
                         {{ Form::text('address[street_2]') }}
 
-                        {{ Form::label('address[street_3]', 'Street 3', array('class' => 'form-label')) }}
-                        {{ Form::text('address[street_3]') }}
-
                         {{ Form::label('address[zip_code]', 'Code postal', array('class' => 'form-label')) }}
                         {{ Form::text('address[zip_code]') }}
 

@@ -73,7 +73,6 @@ class RegisterController extends Controller
         $addressData = $data['address'];
         $address->setStreet1($addressData ['street_1']);
         $address->setStreet2($addressData ['street_2']);
-        $address->setStreet3($addressData ['street_3']);
         $address->setZipCode($addressData ['zip_code']);
         $address->setCity($addressData ['city']);
         $address->setCountry($addressData ['country']);
