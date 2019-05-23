@@ -33,7 +33,7 @@ class OrderDAO extends DAO
     }
 
     public function insert(Order $order) {
-        if($this->get($order->getId())) {
+        if(DB::table('orders')->find($order->getId())) {
             return $order->getId();
         }
 

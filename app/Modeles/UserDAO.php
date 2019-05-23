@@ -13,7 +13,7 @@ class UserDAO extends DAO
     }
 
     public function insert(User $user) {
-        if($this->get($user->getId())) {
+        if(DB::table('users')->find($user->getId())) {
             return $user->getId();
         }
 
