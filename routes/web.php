@@ -28,6 +28,9 @@ Route::group(['middleware' => ['order']], function () {
         Route::get('/paypal', 'PaymentMethodController@paypal')->name('payment_method.paypal');
         Route::get('/credit_card', 'PaymentMethodController@creditCard')->name('payment_method.credit_card');
         Route::get('/bill', 'PaymentMethodController@bill')->name('payment_method.bill');
+        Route::post('/success', function () {
+            return view('payment_method.success');
+        })->name('payment_method.success');
     });
 
     Route::get('/product/{productId}', 'ProductController@show')->name('product.show');

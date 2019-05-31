@@ -46,4 +46,8 @@ class OrderProduct extends Pivot
     public function setQuantity($quantity) {
         $this->quantity = $quantity;
     }
+
+    public function getTotal() {
+        return number_format($this->quantity * $this->getProduct()->getPrice(), 2);
+    }
 }
