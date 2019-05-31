@@ -110,7 +110,9 @@ $('#add-to-bag-btn').click(function () {
       quantity: quantity
     },
     success: function success() {
-      alert('Produit ajouté au panier !');
+      $('#toast-header').html('Succès');
+      $('#toast-body').html('Produit ajouté au panier !');
+      $('.toast').toast('show');
     }
   });
 });

@@ -108,13 +108,9 @@ $('#update-btn').click(function () {
       ordersProducts: quantityInputsArray
     },
     success: function success() {
-      $.toast({
-        title: 'Toast',
-        subtitle: '11 mins ago',
-        content: 'Hello, world! This is a toast message.',
-        type: 'info',
-        delay: 5000
-      });
+      $('#toast-header').html('Succès');
+      $('#toast-body').html('Panier mis à jour !');
+      $('.toast').toast('show');
     }
   });
 });
@@ -130,7 +126,10 @@ $('.quantity-input').each(function (i) {
     totalPriceElement.html(newPrice);
     var totalOrderElement = $('#total-order');
     var totalOrderPrice = parseFloat(totalOrderElement.html());
-    totalOrderElement.html((totalOrderPrice + difference).toFixed(2));
+    var total = (totalOrderPrice + difference).toFixed(2) + ' €';
+    totalOrderElement.html(total);
+    var fullTotalOrderElement = $('#full-total-order');
+    fullTotalOrderElement.html(total);
   });
 });
 $('.delete-btn').each(function () {
@@ -153,7 +152,7 @@ $('.delete-btn').each(function () {
         parent.hide(function () {
           parent.remove();
 
-          if ($('#items').children().length == 0) {
+          if ($('#items').children().length === 0) {
             location.reload();
           }
         });

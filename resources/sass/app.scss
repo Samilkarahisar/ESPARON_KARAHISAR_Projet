@@ -8,7 +8,11 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-@import '~jquery-ui/themes/base/all.css';
+#toast {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
 
 .navbar-laravel {
   background-color: #fff;

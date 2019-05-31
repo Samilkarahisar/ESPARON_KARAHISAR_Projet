@@ -37,7 +37,6 @@
     <div id="page-content-wrapper">
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
 
-
             <button id="menu-toggle" type="button" class="btn mr-md-3 mr-lg-3">
                 <i class="fa fa-align-justify" aria-hidden="true"></i>
             </button>
@@ -99,6 +98,15 @@
             @yield('content')
         </main>
     </div>
+</div>
+<div class="toast fixed-bottom mb-2 ml-2" data-delay="3500">
+    <div class="toast-header">
+        <strong id="toast-header" class="mr-auto"></strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div id="toast-body" class="toast-body"></div>
 </div>
 <footer id="footer">
     <div class="container">

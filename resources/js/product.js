@@ -13,7 +13,9 @@ $('#add-to-bag-btn').click(function() {
         data: { productId : productId,
             quantity : quantity },
         success: function () {
-            alert('Produit ajouté au panier !');
+            $('#toast-header').html('Succès');
+            $('#toast-body').html('Produit ajouté au panier !');
+            $('.toast').toast('show');
         }
     });
 });
