@@ -40,6 +40,8 @@ Route::group(['middleware' => ['order']], function () {
     Route::group(['middleware' => ['admin']], function () {
         Route::prefix('/admin')->group(function () {
             Route::get('/', 'AdminController@index')->name('admin');
+            //Ajax
+            Route::post('/confirm', 'AdminController@confirm')->name('admin.confirm');
         });
     });
 });

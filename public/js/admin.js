@@ -81,62 +81,23 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/bag.js":
-/*!*****************************!*\
-  !*** ./resources/js/bag.js ***!
-  \*****************************/
+/***/ "./resources/js/admin.js":
+/*!*******************************!*\
+  !*** ./resources/js/admin.js ***!
+  \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('#update-btn').click(function () {
-  var url = $(this).data('href');
-  var quantityInputsArray = $('.quantity-input').serializeArray();
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
-  $.ajax({
-    url: url,
-    type: 'post',
-    data: {
-      ordersProducts: quantityInputsArray
-    },
-    success: function success() {
-      $('#toast-header').html('Succès');
-      $('#toast-body').html('Panier mis à jour !');
-      $('.toast').toast('show');
-    }
-  });
-});
-var totalPriceElements = $('.total-price-product');
-$('.quantity-input').each(function (i) {
-  $(this).on('input', function () {
-    var priceUnit = $(this).data('priceunit');
-    var quantity = $(this).val();
-    var totalPriceElement = $(totalPriceElements[i]);
-    var oldPrice = parseFloat(totalPriceElement.html());
-    var newPrice = (priceUnit * quantity).toFixed(2);
-    var difference = newPrice - oldPrice;
-    totalPriceElement.html(newPrice);
-    var totalOrderElement = $('#total-order');
-    var totalOrderPrice = parseFloat(totalOrderElement.html());
-    var total = (totalOrderPrice + difference).toFixed(2) + ' €';
-    totalOrderElement.html(total);
-    var fullTotalOrderElement = $('#full-total-order');
-    fullTotalOrderElement.html(total);
-  });
-});
-$('.delete-btn').each(function () {
-  $(this).click(function () {
-    var idToDelete = $(this).data('id');
-    var url = $(this).data('href');
-    var parent = $(this).closest('.product');
+$('.confirm-btn').each(function () {
+  $(this).on('click', function () {
+    var idToConfirm = $(this).data('id');
+    var url = $(this).data('url');
+    var parent = $(this).closest('.card');
     $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -146,17 +107,17 @@ $('.delete-btn').each(function () {
       url: url,
       type: 'post',
       data: {
-        orderProductId: idToDelete
+        orderId: idToConfirm
       },
       success: function success() {
         parent.hide(function () {
           parent.remove();
 
-          if ($('#items').children().length === 0) {
+          if ($('#accordion').children().length === 0) {
             location.reload();
           } else {
             $('#toast-header').html('Succès');
-            $('#toast-body').html('Article supprimé du panier !');
+            $('#toast-body').html('Commande confirmée !');
             $('.toast').toast('show');
           }
         });
@@ -167,14 +128,14 @@ $('.delete-btn').each(function () {
 
 /***/ }),
 
-/***/ 3:
-/*!***********************************!*\
-  !*** multi ./resources/js/bag.js ***!
-  \***********************************/
+/***/ 1:
+/*!*************************************!*\
+  !*** multi ./resources/js/admin.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/user/websites/ESPARON_KARAHISAR_Projet/resources/js/bag.js */"./resources/js/bag.js");
+module.exports = __webpack_require__(/*! /home/user/websites/ESPARON_KARAHISAR_Projet/resources/js/admin.js */"./resources/js/admin.js");
 
 
 /***/ })

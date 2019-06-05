@@ -15,7 +15,20 @@ class ClientController extends Controller
     }
 
     public function postFillAddresses(StoreAddresses $request) {
-        $shippingAddress = new Address();
+        $order = getCurrentOrder();
+
+        $shippingAddress = $order->getShippingAddress();
+        if(is_null($shippingAddress)) {
+            $order->setShippingAddress(new Address());
+            $shippingAddress = $order->getShippingAddress();
+        }
+
+        $billingAddress = $order->getBillingAddress();
+        if(is_null($billingAddress)) {
+            $order->setBillingAddress(new Address());
+            $billingAddress = $order->getBillingAddress();
+        }
+
         $shippingAddress->setFirstName($request->input('shipping_address.first_name'));
         $shippingAddress->setLastName($request->input('shipping_address.last_name'));
         $shippingAddress->setStreet1($request->input('shipping_address.street_1'));
@@ -24,7 +37,6 @@ class ClientController extends Controller
         $shippingAddress->setCity($request->input('shipping_address.city'));
         $shippingAddress->setCountry($request->input('shipping_address.country'));
 
-        $billingAddress = new Address();
         $billingAddress->setFirstName($request->input('billing_address.first_name'));
         $billingAddress->setLastName($request->input('billing_address.last_name'));
         $billingAddress->setStreet1($request->input('billing_address.street_1'));
@@ -33,9 +45,7 @@ class ClientController extends Controller
         $billingAddress->setCity($request->input('billing_address.city'));
         $billingAddress->setCountry($request->input('billing_address.country'));
 
-        $order = getCurrentOrder();
-        $order->setShippingAddress($shippingAddress);
-        $order->setBillingAddress($billingAddress);
+        $order->setStatus(1);
 
         $orderDAO = new OrderDAO();
         $orderDAO->modify($order);

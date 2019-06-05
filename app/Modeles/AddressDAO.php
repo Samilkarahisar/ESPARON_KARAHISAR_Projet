@@ -12,6 +12,20 @@ class AddressDAO extends DAO
         return $this->createObject($stdObject);
     }
 
+    public function modify(Address $address) {
+        return DB::table('addresses')
+            ->where('id', '=', $address->getId())
+            ->update([
+                'first_name' => $address->getFirstName(),
+                'last_name' => $address->getLastName(),
+                'street_1' => $address->getStreet1(),
+                'street_2' => $address->getStreet2(),
+                'city' => $address->getCity(),
+                'zip_code' => $address->getZipCode(),
+                'country' => $address->getCountry()
+            ]);
+    }
+
     public function insert(Address $address) {
         if($this->get($address->getId())) {
             return $address->getId();

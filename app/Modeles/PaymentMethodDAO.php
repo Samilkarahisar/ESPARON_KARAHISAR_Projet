@@ -12,6 +12,29 @@ class PaymentMethodDAO extends DAO
         return $this->createObject($stdObject);
     }
 
+    public function insert(PaymentMethod $paymentMethod) {
+        if(DB::table('payment_methods')->find($paymentMethod->getId())) {
+            return $paymentMethod->getId();
+        }
+
+        return DB::table('payment_methods')
+            ->insertGetId([
+                'name' => $paymentMethod->getName(),
+                'description' => $paymentMethod->getDescription(),
+                'image' => $paymentMethod->getImage()
+            ]);
+    }
+
+    public function modify(PaymentMethod $paymentMethod) {
+        return DB::table('payment_methods')
+            ->where('id', '=', $paymentMethod->getId())
+            ->update([
+                'name' => $paymentMethod->getName(),
+                'description' => $paymentMethod->getDescription(),
+                'image' => $paymentMethod->getImage()
+            ]);
+    }
+
     public function getAll() {
         $stdObjects = DB::table('payment_methods')->get();
         return $this->createArray($stdObjects);

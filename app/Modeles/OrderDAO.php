@@ -14,16 +14,45 @@ class OrderDAO extends DAO
 
     public function modify(Order $order) {
         $addressDAO = new AddressDAO();
-        $shippingAddressId = $addressDAO->insert($order->getBillingAddress());
-        $billingAddressId = $addressDAO->insert($order->getShippingAddress());
-        $order->getBillingAddress()->setId($shippingAddressId);
-        $order->getShippingAddress()->setId($billingAddressId);
+        $paymentMethodDAO = new PaymentMethodDAO();
+
+        $hasBillingAddress = !is_null($order->getBillingAddress());
+        $hasShippingAddress = !is_null($order->getShippingAddress());
+        $hasPaymentMethod = !is_null($order->getPaymentMethod());
+
+        if($hasBillingAddress) {
+            if (!$addressDAO->get($order->getBillingAddress()->getId())) {
+                $billingAddressId = $addressDAO->insert($order->getBillingAddress());
+                $order->getBillingAddress()->setId($billingAddressId);
+            } else {
+                $addressDAO->modify($order->getBillingAddress());
+            }
+        }
+
+        if($hasShippingAddress) {
+            if (!$addressDAO->get($order->getShippingAddress()->getId())) {
+                $shippingAddressId = $addressDAO->insert($order->getShippingAddress());
+                $order->getShippingAddress()->setId($shippingAddressId);
+            } else {
+                $addressDAO->modify($order->getShippingAddress());
+            }
+        }
+
+        if($hasPaymentMethod) {
+            if (!$paymentMethodDAO->get($order->getPaymentMethod()->getId())) {
+                $paymentMethodId = $paymentMethodDAO->insert($order->getPaymentMethod());
+                $order->getPaymentMethod()->setId($paymentMethodId);
+            } else {
+                $paymentMethodDAO->modify($order->getPaymentMethod());
+            }
+        }
 
         return DB::table('orders')
+            ->where('id', '=', $order->getId())
             ->update([
                 'user_id' => $order->getUser()->getId(),
-                'billing_address_id' => $order->getBillingAddress()->getId(),
-                'shipping_address_id' => $order->getShippingAddress()->getId(),
+                'billing_address_id' => $hasBillingAddress ? $order->getBillingAddress()->getId() : null,
+                'shipping_address_id' => $hasShippingAddress ? $order->getShippingAddress()->getId() : null,
                 'payment_method_id' => $order->getPaymentMethod()->getId(),
                 'status' => $order->getStatus(),
                 'date' => $order->getDate(),
@@ -53,11 +82,6 @@ class OrderDAO extends DAO
     public function getUserCurrent($userId) {
         $stdObject = DB::table('orders')->where([['user_id', '=', $userId], ['status', '<', 2]])->first();
         return $this->createObject($stdObject);
-    }
-
-    public function getAllForAdmin() {
-        $stdObjects = DB::table('orders')->where('status', '=', 2)->get();
-        return $this->createArray($stdObjects);
     }
 
     public function createObject($stdObject) {

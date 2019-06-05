@@ -57,6 +57,10 @@ $('.delete-btn').each(function() {
                     parent.remove();
                     if($('#items').children().length === 0) {
                         location.reload();
+                    } else {
+                        $('#toast-header').html('Succès');
+                        $('#toast-body').html('Article supprimé du panier !');
+                        $('.toast').toast('show');
                     }
                 });
             }

@@ -12,7 +12,7 @@ class OrderProductDAO extends DAO
         return $this->createObject($stdObject);
     }
 
-    public function modify($orderProduct) {
+    public function modify(OrderProduct $orderProduct) {
         DB::table('orders_products')
             ->where('id', '=', $orderProduct->getId())
             ->update(['order_id' => $orderProduct->getOrder()->getId(),
@@ -20,7 +20,7 @@ class OrderProductDAO extends DAO
                 'quantity' => $orderProduct->getQuantity()]);
     }
 
-    public function insert($orderProduct) {
+    public function insert(OrderProduct $orderProduct) {
         DB::table('orders_products')
             ->insert(['order_id' => $orderProduct->getOrder()->getId(),
                 'product_id' => $orderProduct->getProduct()->getId(),
@@ -39,6 +39,11 @@ class OrderProductDAO extends DAO
 
     public function getWithOrder($orderId) {
         $stdObjects = DB::table('orders_products')->where('order_id', '=', $orderId)->get();
+        return $this->createArray($stdObjects);
+    }
+
+    public function getAllForAdmin() {
+        $stdObjects = DB::table('orders_products')->join('orders', 'order_id', '=', 'orders.id')->where('status', '=', 2)->get();
         return $this->createArray($stdObjects);
     }
 
