@@ -4,7 +4,7 @@
     <div class="container dark-grey-text">
         <div class="row">
             <div class="col-md-6 mb-4">
-                <img src="{{ $product->getImage() }}" class="img-fluid border" alt="Image produit">
+                <img src="{{ asset('images/' . $product->getImage()) }}" class="img-fluid border" alt="Image produit">
             </div>
             <div class="col-md-6 mb-4">
                 <div class="p-4">
@@ -36,7 +36,7 @@
                 @foreach($sameCategoryProducts as $sameCategoryProduct)
                     <div class="col-lg-4 col-md-12 mb-4">
                         <a href="{{ route('product.show', ['productId' => $sameCategoryProduct->getId()]) }}">
-                            <img src="{{ $sameCategoryProduct->getImage() }}" class="img-fluid" alt="Image Produit">
+                            <img src="{{ asset('images/' . $sameCategoryProduct->getImage()) }}" class="img-fluid" alt="Image Produit">
                         </a>
                     </div>
                 @endforeach

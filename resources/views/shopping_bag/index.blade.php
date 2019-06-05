@@ -14,7 +14,7 @@
                             @foreach ($orderProducts as $orderProduct)
                                 <div class="row py-2 mb-2 product">
                                     <div class="col-md-3">
-                                        <img class="img-fluid mx-auto d-block image" src="{{ $orderProduct->getProduct()->getImage() }}">
+                                        <img class="img-fluid ml-lg-3 ml-md-3 mt-lg-4 mt-md-4 mx-auto d-block image" src="{{ asset('images/' . $orderProduct->getProduct()->getImage()) }}">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="row info">
@@ -32,7 +32,7 @@
                                                        value="{{ $orderProduct->getQuantity() }}">
                                             </div>
                                             <div class="col-md-3 lead mb-4">
-                                                <p>Total : </br><span class="total-price-product">{{ $orderProduct->getQuantity() * $orderProduct->getProduct()->getPrice() }}
+                                                <p>Total : <br><span class="total-price-product">{{ $orderProduct->getQuantity() * $orderProduct->getProduct()->getPrice() }}
                                                     </span> €</p>
                                                 <small class="text-muted">(P.U : {{ $orderProduct->getProduct()->getPrice() }} €)</small>
                                             </div>

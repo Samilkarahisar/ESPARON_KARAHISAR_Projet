@@ -9,7 +9,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="cc-name">Nom sur la carte</label>
                     <input type="text" class="form-control" required>
-                    <small class="text-muted">Full name as displayed on card</small>
+                    <small class="text-muted">Nom et prénom affichés comme sur la carte</small>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="cc-number">Numéro de carte</label>

@@ -5,7 +5,7 @@
         <div class="card-deck">
             @foreach($paymentMethods as $paymentMethod)
                 <div class="card">
-                    <img class="card-img-top" src="{{ $paymentMethod->getImage() }}" alt="Card image cap">
+                    <img class="card-img-top w-50 h-auto mx-auto" src="{{ asset('images/' . $paymentMethod->getImage()) }}" alt="Card image cap">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ $paymentMethod->getName() }}</h5>
                         <p class="card-text">{{ $paymentMethod->getDescription() }}</p>
