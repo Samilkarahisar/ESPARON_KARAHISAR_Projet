@@ -19,7 +19,7 @@
                         @break
                         @default #
                         @endswitch"
-                           class="btn btn-success mt-auto">Choisir ce mode</a>
+                           class="btn btn-primary mt-auto">Choisir ce mode</a>
                     </div>
                 </div>
             @endforeach

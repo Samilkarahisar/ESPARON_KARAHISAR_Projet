@@ -35,7 +35,7 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <nav class="navbar navbar-expand-lg navbar-light bg-theme-blue border-bottom">
 
             <button id="menu-toggle" type="button" class="btn mr-md-3 mr-lg-3">
                 <i class="fa fa-align-justify" aria-hidden="true"></i>
@@ -73,9 +73,14 @@
                             </li>
                         @endif
                     @else
+                        @if(Auth::user()->is_admin)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin') }}">Administration</a>
+                            </li>
+                        @endif
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->getFullName() }} <span class="caret"></span>
+                                {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }} <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -108,7 +113,7 @@
     </div>
     <div id="toast-body" class="toast-body"></div>
 </div>
-<footer id="footer">
+<footer id="footer" class="bg-theme-blue">
     <div class="container">
         <div class="row text-center text-xs-center text-sm-left text-md-left">
             <div class="col-xs-12 col-sm-4 col-md-4">

@@ -40,7 +40,7 @@
                                     <small class="mt-2">Montant payé : <strong>{{ $orderProduct->getTotal() }} €</strong> (Type de paiement :
                                         <strong>{{ $orderProduct->getOrder()->getPaymentMethod()->getName() }}</strong>)</small>
                                 </div>
-                                <button data-id="{{ $orderId }}" data-url="{{ route('admin.confirm') }}" type="button" class="btn btn-success btn-sm float-right my-3 confirm-btn">
+                                <button data-id="{{ $orderId }}" data-url="{{ route('admin.confirm') }}" type="button" class="btn btn-primary btn-sm float-right my-3 confirm-btn">
                                     Confirmer le paiement</button>
                             </div>
                         </div>

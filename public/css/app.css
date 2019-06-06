@@ -10668,6 +10668,10 @@ a.text-dark:focus {
   right: 10px;
 }
 
+.bg-theme-blue {
+  background-color: #E9EDFF;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -10718,7 +10722,6 @@ body {
 /* Footer */
 
 #footer {
-  background: #D8BFD8 !important;
   padding: 30px 0;
 }
 
