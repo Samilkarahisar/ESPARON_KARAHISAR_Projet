@@ -11,7 +11,7 @@ abstract class DAO extends Model
     protected function createArray($stdObjects) {
         $newArray = array();
         foreach($stdObjects as $stdObject) {
-            $newArray[$stdObject->id] = $this->createObject($stdObject);
+            $newArray[] = $this->createObject($stdObject);
         }
         return $newArray;
     }

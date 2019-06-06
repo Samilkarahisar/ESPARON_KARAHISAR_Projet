@@ -36,7 +36,7 @@
                             @if (Route::has('password.request'))
                                 <div class="row justify-content-center mt-3">
                                     <a class="btn btn-link text-center" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        Mot de passe oublié ?
                                     </a>
                                 </div>
                             @endif

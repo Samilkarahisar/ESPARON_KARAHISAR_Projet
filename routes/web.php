@@ -19,6 +19,9 @@ Route::group(['middleware' => ['order']], function () {
     Route::prefix('/client')->group(function () {
         Route::get('/fill_addresses', 'ClientController@fillAddresses')->name('client.fill_addresses');
         Route::post('/post_fill_addresses','ClientController@postFillAddresses')->name('client.post_fill_addresses');
+
+        //Ajax
+        Route::post('/use_address', 'ClientController@useAddress')->name('client.use_address');
     });
 
     Route::prefix('/payment_method')->group(function () {

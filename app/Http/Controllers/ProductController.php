@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Modeles\ProductCategoryDAO;
 use App\Modeles\ProductDAO;
 
 class ProductController extends Controller
@@ -10,7 +11,9 @@ class ProductController extends Controller
     {
         $productDAO = new ProductDAO();
         $products = $productDAO->getWithProductCategory($productCategoryId);
-        return view('product.index', compact('products'));
+        $productCategoryDAO = new ProductCategoryDAO();
+        $productCategory = $productCategoryDAO->get($productCategoryId);
+        return view('product.index', compact(['products', 'productCategory']));
     }
 
     public function show($productId)

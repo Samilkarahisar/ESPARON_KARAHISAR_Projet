@@ -6,6 +6,9 @@ use App\Business\Address;
 use function App\Helpers\getCurrentOrder;
 use App\Http\Requests\StoreAddresses;
 use App\Modeles\OrderDAO;
+use App\Modeles\UserDAO;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -51,5 +54,23 @@ class ClientController extends Controller
         $orderDAO->modify($order);
 
         return redirect()->route('payment_method');
+    }
+
+    public function useAddress(Request $request) {
+        $userDAO = new UserDAO();
+        $user = $userDAO->get(Auth::user()->id);
+        $address = $user->getAddress();
+
+        $addressStd = new \stdClass();
+        $addressStd->first_name = $address->getFirstName();
+        $addressStd->last_name = $address->getLastName();
+        $addressStd->street_1 = $address->getStreet1();
+        $addressStd->street_2 = $address->getStreet2();
+        $addressStd->zip_code = $address->getZipCode();
+        $addressStd->city = $address->getCity();
+        $addressStd->country = $address->getCountry();
+
+        $addressJson = json_encode($addressStd);
+        return $addressJson;
     }
 }

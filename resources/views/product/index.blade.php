@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
+        <h3>{{ $productCategory->getName() }}</h3>
+        <hr>
+        <div class="row mt-5">
             @foreach ($products as $product)
                 <div class="col-lg-3 col-md-4 col-sm-12">
                     <div class="card mb-3">

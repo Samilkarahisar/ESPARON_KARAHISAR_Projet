@@ -2,9 +2,11 @@
     "/js/admin.js": "/js/admin.js",
     "/js/app.js": "/js/app.js",
     "/css/shopping_cart.css": "/css/shopping_cart.css",
+    "/css/toggle_switch.css": "/css/toggle_switch.css",
     "/css/welcome.css": "/css/welcome.css",
     "/css/admin.css": "/css/admin.css",
     "/css/app.css": "/css/app.css",
     "/js/bag.js": "/js/bag.js",
+    "/js/fill_addresses.js": "/js/fill_addresses.js",
     "/js/product.js": "/js/product.js"
 }
