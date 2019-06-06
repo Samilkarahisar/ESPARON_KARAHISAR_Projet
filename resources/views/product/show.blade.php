@@ -28,11 +28,11 @@
     </div>
     @if (sizeof($sameCategoryProducts) === 3)
         <hr>
-        <div class="row d-flex justify-content-center wow fadeIn">
+        <div class="row d-flex justify-content-center">
             <div class="col-md-6 text-center">
-                <h4 class="my-4 h4">Dans la même catégorie</h4>
+                <h4 class="mb-5 mt-4">Dans la même catégorie</h4>
             </div>
-            <div class="row wow fadeIn">
+            <div class="row mx-2">
                 @foreach($sameCategoryProducts as $sameCategoryProduct)
                     <div class="col-lg-4 col-md-12 mb-4">
                         <a href="{{ route('product.show', ['productId' => $sameCategoryProduct->getId()]) }}">

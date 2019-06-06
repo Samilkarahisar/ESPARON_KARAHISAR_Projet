@@ -17210,7 +17210,7 @@ return jQuery;
     // Latin-1 Supplement block.
     '\xc0': 'A',  '\xc1': 'A', '\xc2': 'A', '\xc3': 'A', '\xc4': 'A', '\xc5': 'A',
     '\xe0': 'a',  '\xe1': 'a', '\xe2': 'a', '\xe3': 'a', '\xe4': 'a', '\xe5': 'a',
-    '\xc7': 'C',  '\xe7': 'cb.jpg',
+    '\xc7': 'C',  '\xe7': 'c',
     '\xd0': 'D',  '\xf0': 'd',
     '\xc8': 'E',  '\xc9': 'E', '\xca': 'E', '\xcb': 'E',
     '\xe8': 'e',  '\xe9': 'e', '\xea': 'e', '\xeb': 'e',
@@ -17229,7 +17229,7 @@ return jQuery;
     '\u0100': 'A',  '\u0102': 'A', '\u0104': 'A',
     '\u0101': 'a',  '\u0103': 'a', '\u0105': 'a',
     '\u0106': 'C',  '\u0108': 'C', '\u010a': 'C', '\u010c': 'C',
-    '\u0107': 'cb.jpg',  '\u0109': 'cb.jpg', '\u010b': 'cb.jpg', '\u010d': 'cb.jpg',
+    '\u0107': 'c',  '\u0109': 'c', '\u010b': 'c', '\u010d': 'c',
     '\u010e': 'D',  '\u0110': 'D', '\u010f': 'd', '\u0111': 'd',
     '\u0112': 'E',  '\u0114': 'E', '\u0116': 'E', '\u0118': 'E', '\u011a': 'E',
     '\u0113': 'e',  '\u0115': 'e', '\u0117': 'e', '\u0119': 'e', '\u011b': 'e',
@@ -49460,15 +49460,27 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/welcome.scss":
+/*!*************************************!*\
+  !*** ./resources/sass/welcome.scss ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*****************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/shopping_cart.scss ./resources/sass/admin.scss ./resources/sass/app.scss ***!
-  \*****************************************************************************************************************************/
+/*!***********************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/shopping_cart.scss ./resources/sass/welcome.scss ./resources/sass/admin.scss ./resources/sass/app.scss ***!
+  \***********************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /home/user/websites/ESPARON_KARAHISAR_Projet/resources/js/app.js */"./resources/js/app.js");
 __webpack_require__(/*! /home/user/websites/ESPARON_KARAHISAR_Projet/resources/sass/shopping_cart.scss */"./resources/sass/shopping_cart.scss");
+__webpack_require__(/*! /home/user/websites/ESPARON_KARAHISAR_Projet/resources/sass/welcome.scss */"./resources/sass/welcome.scss");
 __webpack_require__(/*! /home/user/websites/ESPARON_KARAHISAR_Projet/resources/sass/admin.scss */"./resources/sass/admin.scss");
 module.exports = __webpack_require__(/*! /home/user/websites/ESPARON_KARAHISAR_Projet/resources/sass/app.scss */"./resources/sass/app.scss");
 

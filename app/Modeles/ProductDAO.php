@@ -12,6 +12,11 @@ class ProductDAO extends DAO
         return $this->createObject($stdObject);
     }
 
+    public function getMany($limit) {
+        $stdObjects = DB::table('products')->limit($limit)->get();
+        return $this->createArray($stdObjects);
+    }
+
     public function getWithProductCategory($productCategoryId) {
         $stdObjects = DB::table('products')->where('product_category_id', '=', $productCategoryId)->get();
         return $this->createArray($stdObjects);

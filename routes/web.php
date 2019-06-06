@@ -12,9 +12,7 @@
 */
 
 Route::group(['middleware' => ['order']], function () {
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('welcome');
+    Route::get('/', 'WelcomeController@index')->name('welcome');
 
     Route::get('/products/{productCategoryId}', 'ProductController@index')->name('product');
 
