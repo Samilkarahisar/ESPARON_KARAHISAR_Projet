@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => \App\Http\Middleware\Admin::class,
         'order' => \App\Http\Middleware\CheckForOrder::class,
+        'order.status' => \App\Http\Middleware\CheckOrderStatus::class,
     ];
 
     /**

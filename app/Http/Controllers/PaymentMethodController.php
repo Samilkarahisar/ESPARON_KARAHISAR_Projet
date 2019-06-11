@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use function App\Helpers\getCurrentOrder;
 use App\Modeles\OrderDAO;
 use App\Modeles\PaymentMethodDAO;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentMethodController extends Controller
 {
@@ -16,26 +17,10 @@ class PaymentMethodController extends Controller
     }
 
     public function paypal() {
-        $order = getCurrentOrder();
-        $paymentMethodDAO = new PaymentMethodDAO();
-        $paymentMethod = $paymentMethodDAO->getWithName('PayPal');
-        $order->setPaymentMethod($paymentMethod);
-        $order->setStatus(2);
-        $orderDAO = new OrderDAO();
-        $orderDAO->modify($order);
-
         return view('payment_method.paypal');
     }
 
     public function creditCard() {
-        $order = getCurrentOrder();
-        $paymentMethodDAO = new PaymentMethodDAO();
-        $paymentMethod = $paymentMethodDAO->getWithName('Carte Bancaire');
-        $order->setPaymentMethod($paymentMethod);
-        $order->setStatus(2);
-        $orderDAO = new OrderDAO();
-        $orderDAO->modify($order);
-
         return view('payment_method.credit_card');
     }
 
@@ -48,10 +33,42 @@ class PaymentMethodController extends Controller
         $orderDAO = new OrderDAO();
         $orderDAO->modify($order);
 
+        if(Auth::guest() && session()->has('orderId')) {
+            session()->forget('orderId');
+        }
+
         return view('payment_method.bill');
     }
 
-    public function success() {
+    public function successPayPal() {
+        $order = getCurrentOrder();
+        $paymentMethodDAO = new PaymentMethodDAO();
+        $paymentMethod = $paymentMethodDAO->getWithName('PayPal');
+        $order->setPaymentMethod($paymentMethod);
+        $order->setStatus(2);
+        $orderDAO = new OrderDAO();
+        $orderDAO->modify($order);
+
+        if(Auth::guest() && session()->has('orderId')) {
+            session()->forget('orderId');
+        }
+
+        return view('payment_method.success');
+    }
+
+    public function successCreditCard() {
+        $order = getCurrentOrder();
+        $paymentMethodDAO = new PaymentMethodDAO();
+        $paymentMethod = $paymentMethodDAO->getWithName('Carte Bancaire');
+        $order->setPaymentMethod($paymentMethod);
+        $order->setStatus(2);
+        $orderDAO = new OrderDAO();
+        $orderDAO->modify($order);
+
+        if(Auth::guest() && session()->has('orderId')) {
+            session()->forget('orderId');
+        }
+
         return view('payment_method.success');
     }
 }

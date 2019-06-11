@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h2 class="mb-5">Informations sur votre carte bancaire</h2>
-        <form method="POST" action="{{ route('payment_method.success') }}">
+        <form method="POST" action="{{ route('payment_method.credit_card.success') }}">
             @csrf
             <div class="row">
                 <div class="col-md-6 mb-3">

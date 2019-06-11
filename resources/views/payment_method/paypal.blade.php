@@ -4,10 +4,10 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <div class="card card-signin my-5">
+                <div class="card my-5">
                     <div class="card-body text-center">
                         <img class="w-25 mb-4" src="{{ asset('images/paypal-logo.png') }}" alt="Logo PayPal">
-                        <form method="POST" action="{{ route('payment_method.success') }}">
+                        <form method="POST" action="{{ route('payment_method.paypal.success') }}">
                             @csrf
                             <div class="form-label-group">
                                 <input type="email" class="form-control" name="email" required>

@@ -25,13 +25,6 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                <label class="custom-control-label" for="remember">
-                                    {{ __('Remember Me') }}
-                                </label>
-                            </div>
                             <button class="btn btn-lg btn-primary btn-block mt-5" type="submit">Se connecter</button>
                             @if (Route::has('password.request'))
                                 <div class="row justify-content-center mt-3">
