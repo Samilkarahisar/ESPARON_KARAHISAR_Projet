@@ -42,7 +42,7 @@
             </button>
 
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name') }}
+                <img id="logo" src="{{ asset('images/logo.png') }}" alt="Logo">
             </a>
 
             <button id="collapse-nav-btn" class="btn btn-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
