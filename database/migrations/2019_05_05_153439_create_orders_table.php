@@ -24,6 +24,9 @@ class CreateOrdersTable extends Migration
             $table->float('total')->default(0);
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('billing_address_id')->references('id')->on('addresses')->onDelete('set null');
+            $table->foreign('shipping_address_id')->references('id')->on('addresses')->onDelete('set null');
+            $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade');
         });
     }
 
