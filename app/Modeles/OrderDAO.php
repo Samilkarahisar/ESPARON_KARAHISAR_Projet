@@ -56,8 +56,7 @@ class OrderDAO extends DAO
                 'payment_method_id' => $order->getPaymentMethod()->getId(),
                 'status' => $order->getStatus(),
                 'date' => $order->getDate(),
-                'total' => $order->getTotal(),
-                'registered' => $order->getRegistered()
+                'total' => $order->getTotal()
             ]);
     }
 
@@ -74,8 +73,7 @@ class OrderDAO extends DAO
                 'payment_method_id' => $order->getPaymentMethod()->getId(),
                 'status' => $order->getStatus(),
                 'date' => $order->getDate(),
-                'total' => $order->getTotal(),
-                'registered' => $order->getRegistered()
+                'total' => $order->getTotal()
             ]);
     }
 
@@ -95,7 +93,6 @@ class OrderDAO extends DAO
         $order->setStatus($stdObject->status);
         $order->setTotal($stdObject->total);
         $order->setDate($stdObject->date);
-        $order->setRegistered($stdObject->registered);
 
         $userDAO = new UserDAO();
         $user = $userDAO->get($stdObject->user_id);

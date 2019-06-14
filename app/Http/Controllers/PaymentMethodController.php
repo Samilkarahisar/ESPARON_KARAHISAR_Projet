@@ -30,6 +30,8 @@ class PaymentMethodController extends Controller
         $paymentMethod = $paymentMethodDAO->getWithName('Chèque');
         $order->setPaymentMethod($paymentMethod);
         $order->setStatus(2);
+        $date = new \DateTime();
+        $order->setDate($date->format('Y-m-d'));
         $orderDAO = new OrderDAO();
         $orderDAO->modify($order);
 
@@ -46,6 +48,8 @@ class PaymentMethodController extends Controller
         $paymentMethod = $paymentMethodDAO->getWithName('PayPal');
         $order->setPaymentMethod($paymentMethod);
         $order->setStatus(2);
+        $date = new \DateTime();
+        $order->setDate($date->format('Y-m-d'));
         $orderDAO = new OrderDAO();
         $orderDAO->modify($order);
 
@@ -62,6 +66,8 @@ class PaymentMethodController extends Controller
         $paymentMethod = $paymentMethodDAO->getWithName('Carte Bancaire');
         $order->setPaymentMethod($paymentMethod);
         $order->setStatus(2);
+        $date = new \DateTime();
+        $order->setDate($date->format('Y-m-d'));
         $orderDAO = new OrderDAO();
         $orderDAO->modify($order);
 

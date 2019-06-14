@@ -30,7 +30,6 @@ class Order extends Model
         $this->status = 0;
         $this->date = now();
         $this->total = 0;
-        $this->registered = 0;
     }
 
     public function getId() {
@@ -47,11 +46,6 @@ class Order extends Model
 
     public function getDate() {
         return $this->date;
-    }
-
-    public function getRegistered()
-    {
-        return $this->registered;
     }
 
     public function getUser() {
@@ -76,10 +70,6 @@ class Order extends Model
 
     public function setDate($date) {
         $this->date = $date;
-    }
-
-    public function setRegistered($registered) {
-        $this->registered = $registered;
     }
 
     public function setStatus($status) {

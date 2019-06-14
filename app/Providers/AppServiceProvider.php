@@ -26,9 +26,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        date_default_timezone_set('Europe/Paris');
+        Schema::defaultStringLength(255);
+
         $productCategoryDAO = new ProductCategoryDAO();
         $productCategories = $productCategoryDAO->getAll();
         View::share('productCategories', $productCategories);
-        Schema::defaultStringLength(255);
     }
 }

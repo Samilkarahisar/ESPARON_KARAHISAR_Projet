@@ -22,7 +22,6 @@ class CreateOrdersTable extends Migration
             $table->smallInteger('status')->nullable()->default(0);
             $table->date('date')->default(now());
             $table->float('total')->default(0);
-            $table->boolean('registered')->default(0);
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

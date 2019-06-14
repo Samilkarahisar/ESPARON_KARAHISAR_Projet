@@ -2,13 +2,10 @@
 
 namespace App\Business;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
-
     protected $table = 'users';
 
     public $timestamps = false;
@@ -26,10 +23,6 @@ class User extends Authenticatable
         parent::__construct($attributes);
         $this->address = new Address();
         $this->is_admin = false;
-    }
-
-    public function getFullName() {
-        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
     }
 
     public function getId() {
