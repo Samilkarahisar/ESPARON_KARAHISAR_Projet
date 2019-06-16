@@ -1,8 +1,10 @@
-![alt text](http://url/to/img.png)
+<p align="center">
+  <img src="http://saaspector.com/images/logo.png" width="350" title="hover text">
+    </p>
 
-Ceci est le code de notre projet Laravel: Cheap-e
+<h2>Ceci est le code de notre projet Laravel: Cheap-e </h2>
 
-Les étapes à suivre pour faire marcher le site sur un serveur Apache.
+<h1>Les étapes à suivre pour faire marcher le site sur un serveur Apache.</h1>
 
 1) Placer le dossier contenant le projet laravel dans le dossier "websites" (ou autre, selon votr paramètrage) de Apache
 
@@ -43,3 +45,20 @@ DB_PASSWORD=secret
  ``` php artisan key:generate ```
 
 9) Le fichier sql est également présent dans /app/db/
+
+
+<h1>Concernant l'utilisation du site.</h1>
+
+La base de données est mis en place avec deux comptes préexistant, un compte utilisateur de test dont les identifiants sont:
+
+```
+user@gmail.com
+secret
+```
+
+Et aussi un compte administrateur:
+
+```
+admin@gmail.com
+secret
+```
