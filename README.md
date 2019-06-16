@@ -1,23 +1,6 @@
-Ce dossier contient:
+![alt text](http://url/to/img.png)
 
--Le code du projet laravel.
-
--Le fichier mysql projettest1.sql qui met en place l'ensemble des tables nécessaires.
-
--Notre rapport contenant les maquettes, le schéma de l'arborescence, le schéma relationnel, le modele conceptuel.
-
-Nous avons travaillé en binome avec la répartition suivante:
-
-Kyle ESPARON: Backend du projet
-Muhammet KARAHISAR: Frontend du projet et Déploiement
-
-Puisqu'un de nous avait un ordinateur très peu performant(pour faire tourner une VM), nous avons dû travailler uniquement sur un seul ordinateur. 
-Nous étions donc au cours du développement constamment ensemble.
-
-Le site est déployé sur un serveur Ubunntu-Nginx, accessible depuis ce nom de domaine: http://saaspector.com
-Le code est accessible sur GitHub: https://github.com/KyleESP/ESPARON_KARAHISAR_Projet
-
-
+Ceci est le code de notre projet Laravel: Cheap-e
 
 Les étapes à suivre pour faire marcher le site sur un serveur Apache.
 
@@ -29,8 +12,7 @@ Les étapes à suivre pour faire marcher le site sur un serveur Apache.
 
 4) Toujours sur mariadb, il faut maintenant créer l'utilisateur que notre projet utilise et y donner les droits nécessaires: 
 
-```GRANT ALL PRIVILEGES ON *.* TO 'projettest1_user1'@'localhost' IDENTIFIED BY 'secret';
-```
+`GRANT ALL PRIVILEGES ON *.* TO 'projettest1_user1'@'localhost' IDENTIFIED BY 'secret'; `
 
 5) Depuis votre terminale linux, accéder au dossier du projet, et y faire les commandes suivants:
 
